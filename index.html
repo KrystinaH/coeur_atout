@@ -18,7 +18,78 @@
   <main>
     <h1>Inscription</h1>
 
-    <!-- FORMULAIRE À CRÉER-->
+    <form action="">
+      <fieldset>
+        <legend>Qui?</legend>
+        <fieldset class="ctnForm">
+          <legend>Je suis</legend>
+          <ul>
+            <li><label for="suis_femme">Une femme</label><input type="radio" id="suis_femme"></li>
+            <li><label for="suis_homme">Un homme</label><input type="radio" id="suis_homme"></li>
+            <li><label for="suis_autre">Une autre identité de genre</label><input type="radio" id="suis_autre"></li>
+          </ul>
+        </fieldset>
+        <fieldset class="ctnForm">
+          <legend>Je cherche</legend>
+          <ul>
+            <li><label for="cherche_femme">Une femme</label><input type="radio" id="cherche_femme"></li>
+            <li><label for="cherche_homme">Un homme</label><input type="radio" id="cherche_homme"></li>
+            <li><label for="cherche_autre">Une autre identité de genre</label><input type="radio" id="cherche_autre"></li>
+          </ul>
+        </fieldset>
+      </fieldset>
+      <fieldset>
+        <legend>Mon profil</legend>
+        <fieldset class="ctnForm">
+          <legend>Ma date de naissance (JJ-MM-AAAA)</legend>
+          <label for="jour">Jour</label><input type="text" id="jour">
+          <label for="mois">Mois</label>
+          <select name="mois" id="mois">
+            <option value="Janvier">Janvier</option>
+            <option value="Février">Février</option>
+            <option value="Mars">Mars</option>
+            <option value="Avril">Avril</option>
+            <option value="Mai">Mai</option>
+            <option value="Juin">Juin</option>
+            <option value="Juillet">Juillet</option>
+            <option value="Août">Août</option>
+            <option value="Septembre">Septembre</option>
+            <option value="Octobre">Octobre</option>
+            <option value="Novembre">Novembre</option>
+            <option value="Décembre">Décembre</option>
+          </select>
+          <label for="annee">Année</label><input type="text" id="annee">
+          <p class="info">Vous devez avoir 18 ans ou plus.</p>
+        </fieldset>
+        <div class="ctnForm">
+          <p><label for="code_postal">Mon code postal (A0A 0A0)</label><input type="text" id="code_postal"></p>
+          <p class="info">Votre code postal ne sera pas dévoilé.</p>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Mon compte</legend>
+        <div class="ctnForm">
+          <p><label for="pseudo">Mon prénom ou pseudo</label><input type="text" id="pseudo"></p>
+          <p class="info">Utilisez des lettres, des traits d'unions ou des espaces pour composer votre nom d'usager.</p>
+        </div>
+        <div class="ctnForm">
+          <p><label for="courriel">Mon courriel</label><input type="text" id="courriel"></p>
+          <p class="info">Votre courriel ne sera pas dévoilé.</p>
+        </div>
+        <div class="ctnForm">
+          <p><label for="mdp">Mon mot de passe</label><input type="text" id="mdp"></p>
+          <p class="info">Entre 6 et 10 caractères, lettres minuscule et majuscule et chiffre obligatoire.</p>
+        </div>
+        <div class="ctnForm">
+          <p><label for="afficher_mdp">Afficher le mot de passe</label><input type="checkbox" id="afficher_mdp"></p>
+        </div>
+        <div class="ctnForm">
+          <p><label for="acceptation">J'ai lu et j'accepte les conditions d'utilisation et la politique de confidentialité du réseau Cœur Atout. </label>
+            <input type="checkbox" id="acceptation"></p>
+        </div>
+      </fieldset>
+      <input type="submit" value="M'inscrire">
+    </form>
 
   </main>
 
