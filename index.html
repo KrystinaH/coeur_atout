@@ -24,71 +24,83 @@
         <fieldset class="ctnForm">
           <legend>Je suis</legend>
           <ul>
-            <li><label for="suis_femme">Une femme</label><input type="radio" id="suis_femme"></li>
-            <li><label for="suis_homme">Un homme</label><input type="radio" id="suis_homme"></li>
-            <li><label for="suis_autre">Une autre identité de genre</label><input type="radio" id="suis_autre"></li>
+            <li><label for="suis_femme">Une femme</label><input type="radio" id="suis_femme" name="je_suis" required aria-required="true"></li>
+            <li><label for="suis_homme">Un homme</label><input type="radio" id="suis_homme" name="je_suis"></li>
+            <li><label for="suis_autre">Une autre identité de genre</label><input type="radio" id="suis_autre" name="je_suis"></li>
           </ul>
+          <p class="erreur" aria-live="assertive" aria-atomic="true"></p>
         </fieldset>
         <fieldset class="ctnForm">
           <legend>Je cherche</legend>
           <ul>
-            <li><label for="cherche_femme">Une femme</label><input type="radio" id="cherche_femme"></li>
-            <li><label for="cherche_homme">Un homme</label><input type="radio" id="cherche_homme"></li>
-            <li><label for="cherche_autre">Une autre identité de genre</label><input type="radio" id="cherche_autre"></li>
+            <li><label for="cherche_femme">Une femme</label><input type="radio" id="cherche_femme" name="je_cherche" required aria-required="true"></li>
+            <li><label for="cherche_homme">Un homme</label><input type="radio" id="cherche_homme" name="je_cherche"></li>
+            <li><label for="cherche_autre">Une autre identité de genre</label><input type="radio" id="cherche_autre" name="je_cherche"></li>
           </ul>
+          <p class="erreur" aria-live="assertive" aria-atomic="true"></p>
         </fieldset>
       </fieldset>
       <fieldset>
         <legend>Mon profil</legend>
         <fieldset class="ctnForm">
+          <!-- TODO: Doit-on ajouter des attributs title? -->
           <legend>Ma date de naissance (JJ-MM-AAAA)</legend>
-          <label for="jour">Jour</label><input type="text" id="jour">
+          <label for="jour">Jour</label><input type="number" minlength="1" maxlength="2" pattern="/^[0-9]{1,2}$/" id="jour" name="jour" required aria-required="true">
           <label for="mois">Mois</label>
-          <select name="mois" id="mois">
-            <option value="Janvier">Janvier</option>
-            <option value="Février">Février</option>
-            <option value="Mars">Mars</option>
-            <option value="Avril">Avril</option>
-            <option value="Mai">Mai</option>
-            <option value="Juin">Juin</option>
-            <option value="Juillet">Juillet</option>
-            <option value="Août">Août</option>
-            <option value="Septembre">Septembre</option>
-            <option value="Octobre">Octobre</option>
-            <option value="Novembre">Novembre</option>
-            <option value="Décembre">Décembre</option>
+          <select name="mois" id="mois" required aria-required="true">
+            <option value="janvier">Janvier</option>
+            <option value="fevrier">Février</option>
+            <option value="mars">Mars</option>
+            <option value="avril">Avril</option>
+            <option value="mai">Mai</option>
+            <option value="juin">Juin</option>
+            <option value="juillet">Juillet</option>
+            <option value="aout">Août</option>
+            <option value="septembre">Septembre</option>
+            <option value="octobre">Octobre</option>
+            <option value="novembre">Novembre</option>
+            <option value="decembre">Décembre</option>
           </select>
-          <label for="annee">Année</label><input type="text" id="annee">
+          <label for="annee">Année</label><input type="number" minlength="4" maxlength="4" pattern="/^[0-9]{4}$/" id="annee" name="annee" required aria-required="true">
           <p class="info">Vous devez avoir 18 ans ou plus.</p>
+          <p class="erreur" aria-live="assertive" aria-atomic="true"></p>
         </fieldset>
         <div class="ctnForm">
-          <p><label for="code_postal">Mon code postal (A0A 0A0)</label><input type="text" id="code_postal"></p>
-          <p class="info">Votre code postal ne sera pas dévoilé.</p>
+          <p><label for="code_postal">Mon code postal (A0A 0A0)</label><input type="text" minlength="6" maxlength="7"
+                    pattern="/^[a-zA-Z][0-9][a-zA-Z] ?[a-zA-Z][0-9][a-zA-Z]$/" id="code_postal" name="code_postal" required aria-required="true" aria-describedby="info_code_postal"></p>
+          <p class="info" id="info_code_postal">Votre code postal ne sera pas dévoilé.</p>
+          <p class="erreur" aria-live="assertive" aria-atomic="true"></p>
         </div>
       </fieldset>
       <fieldset>
         <legend>Mon compte</legend>
         <div class="ctnForm">
-          <p><label for="pseudo">Mon prénom ou pseudo</label><input type="text" id="pseudo"></p>
-          <p class="info">Utilisez des lettres, des traits d'unions ou des espaces pour composer votre nom d'usager.</p>
+          <p><label for="pseudo">Mon prénom ou pseudo</label><input type="text" minlength="2" maxlength="30" pattern="/^[a-zA-Z\- ]{2,30}$/" id="pseudo" name="pseudo" required aria-required="true" aria-describedby="info_pseudo"></p>
+          <p class="info" id="info_pseudo">Utilisez des lettres, des traits d'unions ou des espaces pour composer votre nom d'usager.</p>
+          <p class="erreur" aria-live="assertive" aria-atomic="true"></p>
         </div>
         <div class="ctnForm">
-          <p><label for="courriel">Mon courriel</label><input type="text" id="courriel"></p>
-          <p class="info">Votre courriel ne sera pas dévoilé.</p>
+          <p><label for="courriel">Mon courriel</label><input type="email" minlength="6" maxlength="60" pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" id="courriel"
+                    name="courriel" required aria-required="true" aria-describedby="info_courriel"></p>
+          <p class="info" id="info_courriel">Votre courriel ne sera pas dévoilé.</p>
+          <p class="erreur" aria-live="assertive" aria-atomic="true"></p>
         </div>
         <div class="ctnForm">
-          <p><label for="mdp">Mon mot de passe</label><input type="text" id="mdp"></p>
-          <p class="info">Entre 6 et 10 caractères, lettres minuscule et majuscule et chiffre obligatoire.</p>
+          <p><label for="mdp">Mon mot de passe</label><input type="password" minlength="6" maxlength="10" id="mdp" name="mdp" required aria-required="true" aria-describedby="info_mdp"></p>
+          <p class="info" id="info_mdp">Entre 6 et 10 caractères, lettres minuscule et majuscule et chiffre obligatoire.</p>
+          <p class="erreur" aria-live="assertive" aria-atomic="true"></p>
         </div>
         <div class="ctnForm">
-          <p><label for="afficher_mdp">Afficher le mot de passe</label><input type="checkbox" id="afficher_mdp"></p>
+          <p><label for="afficher_mdp">Afficher le mot de passe</label><input type="checkbox" id="afficher_mdp" name="afficher_mdp"></p>
         </div>
         <div class="ctnForm">
-          <p><label for="acceptation">J'ai lu et j'accepte les conditions d'utilisation et la politique de confidentialité du réseau Cœur Atout. </label>
-            <input type="checkbox" id="acceptation"></p>
+          <p><label for="acceptation">J'ai lu et j'accepte les <a href="">conditions d'utilisation</a> et la <a
+                  href="">politique de confidentialité</a> du réseau Cœur Atout.</label>
+            <input type="checkbox" id="acceptation" name="acceptation" required aria-required="true"></p>
+          <p class="erreur" aria-live="assertive" aria-atomic="true"></p>
         </div>
       </fieldset>
-      <input type="submit" value="M'inscrire">
+      <button type="submit">M'inscrire</button>
     </form>
 
   </main>
