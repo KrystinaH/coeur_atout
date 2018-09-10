@@ -22,23 +22,14 @@ $policeTitres: "Nom Police", sans-serif;
 $policeCorps: Times, serif;
 
 /** Palette de couleurs **/
-// Au besoin utiliser http://chir.ag/projects/name-that-color pour nommer les couleurs
-
-$bleuPale: #68A8E8;
-$vertLime: #BBD531;
-$bleuMinuit: #012D61;
-$bleuMarin: #2678B5;
-$noir: #000;
-$blanc: #fff;
-
-$dominante: $bleuMinuit;
-$secondaire: $vertLime;
-$texte:$noir;
-$texteInverse:$blanc;
-
+$razzMaTazzPink : #ED1E79;
+$paleRose : #FFE6F1;
+$tundoraGray : #4A4A4A;
 
 /** Points de rupture **/
-$tablettePortrait : 600px;
-/* tablet, landscape iPad, lo-res laptops ands desktops */
-$desktop : 1025px;
-/* hi-res laptops and desktops */
+/* Écran étroit : 0px à 700px */
+$ecranEtroit : 700px;
+/* Écran moyen : 701px à 1200px */
+$ecranMoyen : 701px;
+/* Écran large : 1201px et plus */
+$ecranLarge : 1201px;

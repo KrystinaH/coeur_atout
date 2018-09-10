@@ -5,22 +5,24 @@
   <meta charset="utf-8"/>
   <title>Coeur Atout - Jouer la carte romantique</title>
   <meta name="viewport" content="width=device-width"/>
-  <!--<link rel="stylesheet" type="text/css" href="assets/css/styles.css"/>-->
+  <link href="https://fonts.googleapis.com/css?family=Nixie+One|Roboto:300,400,700" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="assets/css/styles.css"/>
 
 </head>
 <body>
 
   <header>
-    <p class="h1">Coeur Atout</p>
-    <p>Jouer la carte romantique</p>
+    <p class="visuallyhidden">Coeur Atout</p>
+    <p class="visuallyhidden">Jouer la carte romantique</p>
+    <img src="assets/images/logo.svg" alt="Coeur Atout, Jouer la carte romantique">
   </header>
 
-  <main>
+  <main class="conteneur">
     <h1>Inscription</h1>
 
     <form action="">
-      <fieldset>
-        <legend>Qui?</legend>
+      <fieldset class="etape">
+        <legend class="etape__titre"><h2>Qui?</h2></legend>
         <fieldset class="ctnForm">
           <legend>Je suis</legend>
           <ul>
@@ -33,15 +35,15 @@
         <fieldset class="ctnForm">
           <legend>Je cherche</legend>
           <ul>
-            <li><label for="cherche_femme">Une femme</label><input type="radio" id="cherche_femme" name="je_cherche" required aria-required="true"></li>
-            <li><label for="cherche_homme">Un homme</label><input type="radio" id="cherche_homme" name="je_cherche"></li>
-            <li><label for="cherche_autre">Une autre identité de genre</label><input type="radio" id="cherche_autre" name="je_cherche"></li>
+            <li><label for="cherche_femme">Une femme</label><input type="checkbox" id="cherche_femme" name="je_cherche" required aria-required="true"></li>
+            <li><label for="cherche_homme">Un homme</label><input type="checkbox" id="cherche_homme" name="je_cherche"></li>
+            <li><label for="cherche_autre">Une autre identité de genre</label><input type="checkbox" id="cherche_autre" name="je_cherche"></li>
           </ul>
           <p class="erreur" aria-live="assertive" aria-atomic="true"></p>
         </fieldset>
       </fieldset>
-      <fieldset>
-        <legend>Mon profil</legend>
+      <fieldset class="etape">
+        <legend class="etape__titre"><h2>Mon profil</h2></legend>
         <fieldset class="ctnForm">
           <!-- TODO: Doit-on ajouter des attributs title? -->
           <legend>Ma date de naissance (JJ-MM-AAAA)</legend>
@@ -72,8 +74,8 @@
           <p class="erreur" aria-live="assertive" aria-atomic="true"></p>
         </div>
       </fieldset>
-      <fieldset>
-        <legend>Mon compte</legend>
+      <fieldset class="etape">
+        <legend class="etape__titre"><h2>Mon compte</h2></legend>
         <div class="ctnForm">
           <p><label for="pseudo">Mon prénom ou pseudo</label><input type="text" minlength="2" maxlength="30" pattern="/^[a-zA-Z\- ]{2,30}$/" id="pseudo" name="pseudo" required aria-required="true" aria-describedby="info_pseudo"></p>
           <p class="info" id="info_pseudo">Utilisez des lettres, des traits d'unions ou des espaces pour composer votre nom d'usager.</p>
@@ -111,12 +113,12 @@
 
 
   <!-- CDN v2018 -->
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-          integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-          crossorigin="anonymous"></script>
+  <!--<script src="https://code.jquery.com/jquery-3.3.1.min.js"-->
+          <!--integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="-->
+          <!--crossorigin="anonymous"></script>-->
 
-  <!-- ALT au CDN: chargement local de la version installée avec Bower -->
-  <script>window.jQuery || document.write('<script src="../bower_components/jquery/dist/jquery.min.js">\x3C/script>')</script>
+  <!--&lt;!&ndash; ALT au CDN: chargement local de la version installée avec Bower &ndash;&gt;-->
+  <!--<script>window.jQuery || document.write('<script src="../bower_components/jquery/dist/jquery.min.js">\x3C/script>')</script>-->
 
   <!-- Chargement de objMessages, l'objet json des messages d'erreurs -->
   <script src="assets/js/objMessages.js"></script>

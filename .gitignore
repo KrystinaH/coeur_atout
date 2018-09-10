@@ -15,4 +15,6 @@ bower_components/
 .sass-cache/
 
 #Dossier de compilation des css
-css/
+assets/css/
+assets/js/
+!assets/js/objMessages.js
