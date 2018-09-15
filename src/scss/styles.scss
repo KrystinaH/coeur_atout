@@ -33,6 +33,7 @@
 /* Utilitaires */
 @import "utilitaires/variables";
 @import "utilitaires/mixins";
+@import "base/typo";
 
 /* Réglages de Susy */
 @include border-box-sizing;
@@ -65,3 +66,101 @@
     )) no-repeat scroll;
   }
 }
+
+/** Général **/
+fieldset{
+  border: none;
+}
+
+ul{
+  list-style: none;
+}
+
+.info{
+  color: $tundoraGray;
+  @include fontSize(14px);
+}
+
+a{
+  color: $razzMaTazzPink;
+}
+
+input,
+select{
+  border: none;
+  background-color: $paleRose;
+}
+
+/** Styles de la page **/
+header{
+  background-color: $paleRose;
+
+  .logo{
+    width: span(3 of 4);
+    padding-top: 10px;
+
+    @media (min-width: $ecranMoyen) {
+      width: span(2 of 12);
+      padding: 10px 0 5px 0;
+    }
+  }
+}
+
+#icon-femme,
+#icon-homme,
+#icon-autre{
+  fill: $razzMaTazzPink;
+}
+
+.titeBarre{
+  stroke: var(--color1, #ED1E79);
+}
+
+.etape1{
+  ul{
+    display: flex;
+    justify-content: space-between;
+    width: span(4 of 12);
+    padding: 0;
+
+    li{
+      margin-right: 20px;
+    }
+
+    label{
+      display: block;
+      border-radius: 10px;
+      border: 2px solid transparent;
+    }
+
+    input:focus+label{
+      border: 2px solid $razzMaTazzPink;
+    }
+
+    input:checked+label{
+      background-color: $paleRose;
+    }
+
+      svg{
+        width: 80px;
+        height: 80px;
+        display: block;
+        padding: 10px;
+      }
+  }
+}
+
+
+footer{
+  padding: 10px;
+
+  small{
+    display: block;
+    text-align: center;
+    color: $razzMaTazzPink;
+    padding: 20px 0 40px 0;
+    border-top: 2px solid $razzMaTazzPink;
+    font-weight: bold;
+  }
+}
+

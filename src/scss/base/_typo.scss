@@ -14,7 +14,7 @@
 /** Base décimale **/
 html{
   font-size: 62.5%;
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto";
   font-weight: 300;
 }
 body {
@@ -43,18 +43,20 @@ h1,
 .h1 { /* = 32px */
   @include fontSize(32px);
   line-height: 1.1;
-  font-family: "Nixie One", cursive;
+  font-family: "Nixie One";
+  color: $razzMaTazzPink;
+  text-decoration: underline;
 }
 @media (min-width: $ecranMoyen) {
   h1,
   .h1 { /* = 40px */
-    @include fontSize(40px);
+    @include fontSize(36px);
   }
 }
 @media (min-width: $ecranLarge) {
   h1,
   .h1 { /* = 48px */
-    @include fontSize(48px);
+    @include fontSize(40px);
   }
 }
 
@@ -64,6 +66,7 @@ h2,
 .h2 { /* = 24px */
   @include fontSize(24px);
   font-weight: 400;
+  color: $razzMaTazzPink;
 }
 @media (min-width: $ecranMoyen) {
   h2,

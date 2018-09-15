@@ -36,10 +36,10 @@ const objMessages = {
             "age": "Vous êtes trop jeune pour vous inscrire ici!"
         }
     },
-    "codePostal": {
+    "code_postal": {
         "erreurs": {
             "vide": "Veuillez entrer votre code postal pour nous permettre d'identifier votre lieu de résidence.",
-            "motif": "Entrez votre code postal au format A1A1A1, sans espace."
+            "motif": "Entrez votre code postal au format A1A 1A1."
         }
     },
     "pseudo": {
@@ -55,7 +55,7 @@ const objMessages = {
             "motif": "Vérifiez votre adresse courriel, il semble y avoir une erreur."
         }
     },
-    "motDePasse": {
+    "mdp": {
         "erreurs": {
             "vide": "Veuillez définir votre mot de passe.",
             "motif": "Votre mot de passe ne respecte pas encore tous les critères... Renforcez-le!",
