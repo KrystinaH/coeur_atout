@@ -19,18 +19,20 @@ export class Validations {
     private refCourriel: HTMLElement = document.querySelector('#courriel');
     private refMotDePasse: HTMLInputElement = document.querySelector('#mdp');
     private refAfficherMdp: HTMLInputElement = document.querySelector('#afficherMdp');
-    private refConsentement: HTMLInputElement = document.querySelector('#consentement')
+    private refConsentement: HTMLInputElement = document.querySelector('#consentement');
 
     // Constructeur
     constructor(objetJSON: JSON){
         this.objMessages = objetJSON;
         document.querySelector('form').noValidate = true;
 
+        //Écouteurs d'évènements
         this.refarrJeSuis.forEach(btnRadio => btnRadio.addEventListener('blur', this.validerJeSuis.bind(this)));
+        this.refarrJeSuis.forEach(btnRadio => btnRadio.addEventListener('click', this.validerJeSuis.bind(this)));
         this.refarrJeCherche[this.refarrJeCherche.length - 1].addEventListener('blur', this.validerJeCherche.bind(this));
         this.refarrJeCherche.forEach(btnCheckbox => btnCheckbox.addEventListener('click', this.validerJeCherche.bind(this)));
         this.refJourNaissance.addEventListener('blur', this.validerJour.bind(this));
-        this.refMoisNaissance.addEventListener('blur', this.validerMois.bind(this));
+        this.refMoisNaissance.addEventListener('change', this.validerMois.bind(this));
         this.refAnneeNaissance.addEventListener('blur', this.validerAnnee.bind(this));
         this.refCodePostal.addEventListener('blur', this.validerCodePostal.bind(this));
         this.refPseudo.addEventListener('blur', this.validerPseudo.bind(this));
@@ -38,12 +40,13 @@ export class Validations {
         this.refMotDePasse.addEventListener('blur', this.validerMotDePasse.bind(this));
         this.refAfficherMdp.addEventListener('click', this.basculerTypeMdp.bind(this));
         this.refConsentement.addEventListener('blur', this.validerConsentement.bind(this));
+        this.refConsentement.addEventListener('click', this.validerConsentement.bind(this));
     }
 
     // Méthodes de validation
     private validerJeSuis(evenement):void{
         const element: HTMLInputElement = evenement.currentTarget;
-        this.effacerErreur(element);
+
         let blnChecked: boolean = false;
         for(let intCpt = 0; intCpt < this.refarrJeSuis.length && !blnChecked; intCpt++){
             if(this.refarrJeSuis[intCpt].checked){
@@ -54,13 +57,13 @@ export class Validations {
         if(!blnChecked){
             this.afficherErreur(element, 'vide');
         } else{
-            console.log('Valide!');
+            this.afficherSucces(element);
         }
     }
 
     private validerJeCherche(evenement):void{
         const element: HTMLInputElement = evenement.currentTarget;
-        element.closest('.ctnForm').querySelector('.erreur').innerHTML = '';
+
         let blnChecked: boolean = false;
         for(let intCpt = 0; intCpt < this.refarrJeCherche.length && !blnChecked; intCpt++){
             if(this.refarrJeCherche[intCpt].checked){
@@ -69,74 +72,81 @@ export class Validations {
         }
 
         if(!blnChecked){
-            element.closest('.ctnForm').querySelector('.erreur').innerHTML = this.objMessages['jeCherche']['erreurs']['vide'];
+            this.effacerSucces(element);
+
+            const pErreur = element.closest('.ctnForm').querySelector('.erreur');
+
+            if(pErreur.innerHTML == ''){
+                element.classList.add('elemErreur');
+                pErreur.innerHTML = '<svg><use xlink:href="#icon-erreur"/></svg>'
+                    + this.objMessages['jeCherche']['erreurs']['vide'];
+            }
         } else{
-            console.log('Valide!');
+            this.afficherSucces(element);
         }
     }
 
     private validerJour(evenement):void{
         const element = evenement.currentTarget;
-        this.effacerErreur(element);
-        document.querySelector('.dateNonValide').innerHTML = '';
+
         if(element.value != ""){
             if(!this.validerPattern(element)){
+                this.effacerSucces(document.querySelector('.dateNonValide'));
                 this.afficherErreur(element, 'motif');
             } else{
-                if(this.validerDateEntree()){
-                    console.log('Valide!');
-                } else{
-                    document.querySelector('.dateNonValide')
-                        .innerHTML = this.objMessages[this.refAnneeNaissance.name]['erreurs']['age'];
-                }
+                this.effacerErreur(element);
+            }
+            if (this.refJourNaissance.value != '' && this.refMoisNaissance.value != '0'
+                && this.refAnneeNaissance.value != ''){
+                this.afficherErreurDateComplete();
             }
         } else{
+            this.effacerSucces(document.querySelector('.dateNonValide'));
             this.afficherErreur(element, 'vide');
         }
     }
 
     private validerMois(evenement):void{
         const element = evenement.currentTarget;
-        this.effacerErreur(element);
-        document.querySelector('.dateNonValide').innerHTML = '';
+
         if(element.value == 0){
+            this.effacerSucces(document.querySelector('.dateNonValide'));
             this.afficherErreur(element, 'vide');
-        } else{
-            if(this.validerDateEntree()){
-                console.log('Valide!');
-            } else{
-                document.querySelector('.dateNonValide')
-                    .innerHTML = this.objMessages[this.refAnneeNaissance.name]['erreurs']['age'];
-            }
+        } else {
+            this.effacerErreur(element);
+        }
+
+        if (this.refJourNaissance.value != '' && this.refMoisNaissance.value != '0'
+            && this.refAnneeNaissance.value != ''){
+            this.afficherErreurDateComplete();
         }
     }
 
     private validerAnnee(evenement):void{
         const element = evenement.currentTarget;
-        this.effacerErreur(element);
-        document.querySelector('.dateNonValide').innerHTML = '';
+
         if(element.value != ""){
             if(!this.validerPattern(element)){
+                this.effacerSucces(document.querySelector('.dateNonValide'));
                 this.afficherErreur(element, 'motif');
             } else{
-                if(this.validerDateEntree()){
-                    console.log('Valide!');
-                } else{
-                    document.querySelector('.dateNonValide')
-                        .innerHTML = this.objMessages[this.refAnneeNaissance.name]['erreurs']['age'];
-                }
+                this.effacerErreur(element);
+            }
+            if (this.refJourNaissance.value != '' && this.refMoisNaissance.value != '0'
+                && this.refAnneeNaissance.value != ''){
+                this.afficherErreurDateComplete();
             }
         } else{
+            this.effacerSucces(document.querySelector('.dateNonValide'));
             this.afficherErreur(element, 'vide');
         }
     }
 
     private validerDateEntree():boolean{
         let blnEntreeValide = true;
-        if(this.refJourNaissance.value != '' && this.refMoisNaissance.value != '0' && this.refAnneeNaissance.value != ''){
-            if(!this.validerDateNaissance(this.formerDate(this.refJourNaissance.value, this.refMoisNaissance.value, this.refAnneeNaissance.value))){
-                blnEntreeValide = false;
-            }
+        if(!this.validerDateNaissance(this.formerDate(this.refJourNaissance.value, this.refMoisNaissance.value,
+            this.refAnneeNaissance.value))){
+            blnEntreeValide = false;
         }
 
         return blnEntreeValide;
@@ -144,12 +154,12 @@ export class Validations {
 
     private validerCodePostal(evenement):void{
         const element = evenement.currentTarget;
-        this.effacerErreur(element);
+
         if(element.value != ""){
             if(!this.validerPattern(element)){
                 this.afficherErreur(element, 'motif');
             } else{
-                console.log('Valide!');
+                this.afficherSucces(element);
             }
         } else{
             this.afficherErreur(element, 'vide');
@@ -158,12 +168,12 @@ export class Validations {
 
     private validerPseudo(evenement):void{
         const element = evenement.currentTarget;
-        this.effacerErreur(element);
+
         if(element.value != ""){
             if(!this.validerPattern(element)){
                 this.afficherErreur(element, 'motif');
             } else{
-                console.log('Valide!');
+                this.afficherSucces(element);
             }
         } else{
             this.afficherErreur(element, 'vide');
@@ -172,12 +182,12 @@ export class Validations {
 
     private validerCourriel(evenement):void{
         const element = evenement.currentTarget;
-        this.effacerErreur(element);
+
         if(element.value != ""){
             if(!this.validerPattern(element)){
                 this.afficherErreur(element, 'motif');
             } else{
-                console.log('Valide!');
+                this.afficherSucces(element);
             }
         } else{
             this.afficherErreur(element, 'vide');
@@ -186,12 +196,34 @@ export class Validations {
 
     private validerMotDePasse(evenement):void{
         const element = evenement.currentTarget;
-        this.effacerErreur(element);
+        const pErreur = element.closest('.ctnForm').querySelector('.erreur');
+
         if(element.value != ""){
+            this.effacerErreur(element, 'vide');
             if(!this.validerPattern(element)){
-                this.afficherErreur(element, 'motif');
+                if(!this.validerPattern(element, '^.{6,10}$')){
+                    this.afficherErreur(element, 'size');
+                } else{
+                    this.effacerErreur(element, 'size');
+                }
+                if(!this.validerPattern(element, '[a-z]+')){
+                    this.afficherErreur(element, 'minus');
+                } else{
+                    this.effacerErreur(element, 'minus');
+                }
+                if(!this.validerPattern(element, '[A-Z]+')){
+                    this.afficherErreur(element, 'majus');
+                } else{
+                    this.effacerErreur(element, 'majus');
+                }
+                if(!this.validerPattern(element, '[0-9]+')){
+                    this.afficherErreur(element, 'num');
+                } else{
+                    this.effacerErreur(element, 'num');
+                }
             } else{
-                console.log('Valide!');
+                this.afficherSucces(element);
+                element.closest('.ctnForm').querySelector('.erreur').innerHTML = '';
             }
         } else{
             this.afficherErreur(element, 'vide');
@@ -202,7 +234,7 @@ export class Validations {
         if(!this.refConsentement.checked){
             this.afficherErreur(this.refConsentement, 'vide');
         } else{
-            console.log('Valide!');
+            this.afficherSucces(this.refConsentement);
         }
     }
 
@@ -214,15 +246,75 @@ export class Validations {
     }
 
     private afficherErreur(element:HTMLInputElement, typeErreur:string):void{
-        element.closest('.ctnForm')
-            .querySelector('.erreur')
-            .innerHTML = this.objMessages[element.name]['erreurs'][typeErreur];
+        this.effacerSucces(element);
+
+        const pErreur = element.closest('.ctnForm').querySelector('.erreur');
+
+        if(element.name == 'mdp'){
+            element.classList.add('elemErreur');
+            if(pErreur.innerHTML.indexOf(this.objMessages[element.name]['erreurs'][typeErreur]) == -1){
+                pErreur.innerHTML += '<p id="' + typeErreur + '"><svg><use xlink:href="#icon-erreur"/></svg>'
+                    + this.objMessages[element.name]['erreurs'][typeErreur]+'</p>';
+            }
+        } else{
+            if(pErreur.innerHTML == ''){
+                element.classList.add('elemErreur');
+                pErreur.innerHTML = '<svg><use xlink:href="#icon-erreur"/></svg>'
+                    + this.objMessages[element.name]['erreurs'][typeErreur];
+            }
+        }
     }
 
-    private effacerErreur(element):void{
-        element.closest('.ctnForm')
-            .querySelector('.erreur')
-            .innerHTML = '';
+    private afficherErreurDateComplete():void{
+        const pDateNonValide: HTMLInputElement = document.querySelector('.dateNonValide');
+
+        if(this.validerDateEntree()){
+            this.afficherSucces(pDateNonValide);
+
+            pDateNonValide.closest('.ctnForm').classList.remove('elemErreur');
+            pDateNonValide.innerHTML = '';
+        } else{
+            this.effacerSucces(pDateNonValide);
+
+            pDateNonValide.closest('.ctnForm').classList.add('elemErreur');
+            pDateNonValide.innerHTML = '<svg><use xlink:href="#icon-erreur"/></svg>'
+                + this.objMessages[this.refAnneeNaissance.name]['erreurs']['age'];
+        }
+    }
+
+    private afficherSucces(element:HTMLInputElement):void{
+        this.effacerErreur(element);
+
+        const spanBon = element.closest('.ctnForm').querySelector('.icone_bon');
+
+        if(spanBon.innerHTML == ''){
+            spanBon.innerHTML = '<svg><use xlink:href="#icon-bon"/></svg>';
+        }
+    }
+
+    private effacerSucces(element:HTMLInputElement):void{
+        const spanBon = element.closest('.ctnForm').querySelector('.icone_bon');
+
+        if(spanBon != null){
+            if(spanBon.innerHTML != ''){
+                spanBon.innerHTML = '';
+            }
+        }
+    }
+
+    private effacerErreur(element, typeErreur = ''):void{
+        element.classList.remove('elemErreur');
+
+        const pErreur = element.closest('.ctnForm').querySelector('.erreur');
+
+        if(element.name == 'mdp') {
+            if(document.getElementById(typeErreur) != null){
+                const pMsgCible = document.getElementById(typeErreur);
+                pErreur.removeChild(pMsgCible);
+            }
+        } else{
+            pErreur.innerHTML = '';
+        }
     }
 
     private formerDate(refJour, refMois, refAnnee){

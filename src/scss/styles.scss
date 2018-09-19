@@ -92,6 +92,52 @@ select{
 }
 
 /** Styles de la page **/
+/* Gérénal */
+svg{
+  width: 2em;
+  height: 2em;
+  vertical-align: bottom;
+}
+
+.elemErreur{
+  border: 1px solid red;
+}
+
+#icon-bon{
+  margin-left: 15px;
+
+  .crochet{
+    stroke: var(--color1, #42DD42);
+  }
+
+  .coeur{
+    fill: $razzMaTazzPink;
+  }
+}
+
+#icon-erreur{
+  fill: red;
+}
+
+.erreur{
+  color: red;
+
+  svg{
+    margin-right: 15px;
+  }
+}
+
+.icone_bon{
+  svg{
+    margin-left: 15px;
+  }
+}
+
+input{
+  display: block;
+}
+
+/* Header */
 header{
   background-color: $paleRose;
 
@@ -106,6 +152,7 @@ header{
   }
 }
 
+/* Étape 1: Qui? */
 #icon-femme,
 #icon-homme,
 #icon-autre{
@@ -146,7 +193,24 @@ header{
         height: 80px;
         display: block;
         padding: 10px;
+        margin: 0;
       }
+  }
+}
+
+/* Étape 2: Mon profil */
+.etape2{
+  fieldset{
+    .ctnForm{
+      display: inline-block;
+      position: relative;
+    }
+
+    .erreur{
+      position: absolute;
+      background-color: $paleRose;
+      border: 1px solid red;
+    }
   }
 }
 
