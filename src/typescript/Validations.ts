@@ -1,6 +1,8 @@
 /**
  *
  */
+import {BarreProgressionEtapes} from "./BarreProgressionEtapes";
+
 export class Validations {
 
     // ATTRIBUTS
@@ -20,11 +22,18 @@ export class Validations {
     private refMotDePasse: HTMLInputElement = document.querySelector('#mdp');
     private refAfficherMdp: HTMLInputElement = document.querySelector('#afficherMdp');
     private refConsentement: HTMLInputElement = document.querySelector('#consentement');
+    private refbarreEtapes: BarreProgressionEtapes;
+    private arrEtapes:any = {
+        etape1: [false, false],
+        etape2: [false, false],
+        etape3: [false, false, false, false],
+    };
 
     // Constructeur
-    constructor(objetJSON: JSON){
+    constructor(objetJSON: JSON, refBarreEtapes){
         this.objMessages = objetJSON;
         document.querySelector('form').noValidate = true;
+        this.refbarreEtapes = refBarreEtapes;
 
         //Écouteurs d'évènements
         this.refarrJeSuis.forEach(btnRadio => btnRadio.addEventListener('blur', this.validerJeSuis.bind(this)));
@@ -56,8 +65,12 @@ export class Validations {
 
         if(!blnChecked){
             this.afficherErreur(element, 'vide');
+            this.arrEtapes.etape1[0] = false;
+            this.verifierEtapeCompletee(0);
         } else{
             this.afficherSucces(element);
+            this.arrEtapes.etape1[0] = true;
+            this.verifierEtapeCompletee(0);
         }
     }
 
@@ -81,8 +94,12 @@ export class Validations {
                 pErreur.innerHTML = '<svg><use xlink:href="#icon-erreur"/></svg>'
                     + this.objMessages['jeCherche']['erreurs']['vide'];
             }
+            this.arrEtapes.etape1[1] = false;
+            this.verifierEtapeCompletee(1);
         } else{
             this.afficherSucces(element);
+            this.arrEtapes.etape1[1] = true;
+            this.verifierEtapeCompletee(1);
         }
     }
 
@@ -352,6 +369,18 @@ export class Validations {
             this.refMotDePasse.type = 'text';
         } else{
             this.refMotDePasse.type = 'password';
+        }
+    }
+
+    private verifierEtapeCompletee(intNumEtape:number):void{
+        const intEtapeCible = 'etape'+intNumEtape;
+        const arrEtapeCible = this.arrEtapes[intEtapeCible];
+        console.log(arrEtapeCible);
+
+        if(arrEtapeCible.every(elem => elem == true)){
+            this.refbarreEtapes.activerBoutonSuivant(intNumEtape);
+        } else{
+            this.refbarreEtapes.desactiverBoutonSuivant(intNumEtape);
         }
     }
 }

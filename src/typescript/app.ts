@@ -1,3 +1,6 @@
 import {Validations} from './Validations';
+import {BarreProgressionEtapes} from './BarreProgressionEtapes';
 
-new Validations(objMessages);
+document.body.classList.add('js');
+
+new Validations(objMessages, new BarreProgressionEtapes());

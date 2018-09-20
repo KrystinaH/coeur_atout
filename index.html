@@ -22,9 +22,9 @@
   <main class="conteneur">
     <h1>Inscription</h1>
 
-    <form action="">
-      <fieldset class="etape1">
-        <legend><h2>Qui?</h2></legend>
+    <form action="index.html" class="formMultiSteps">
+      <section aria-labelledby="step1title" id="step1" tabindex="-1" class="formMultiSteps__step">
+        <h2>Qui?</h2>
         <fieldset class="ctnForm">
           <legend>Je suis <span class="icone_bon"></span></legend>
           <ul>
@@ -74,9 +74,9 @@
           </ul>
           <p class="erreur" aria-live="assertive" aria-atomic="true"></p>
         </fieldset>
-      </fieldset>
-      <fieldset class="etape2">
-        <legend><h2>Mon profil</h2></legend>
+      </section>
+      <section aria-labelledby="step2title" id="step2" tabindex="-1" class="formMultiSteps__step">
+        <h2>Mon profil</h2>
         <fieldset class="ctnForm">
           <legend class="dateValide">Ma date de naissance (JJ-MM-AAAA) <span class="icone_bon"></span></legend>
             <div class="ctnForm">
@@ -123,9 +123,9 @@
           <p class="info" id="info_code_postal">Votre code postal ne sera pas dévoilé.</p>
           <p class="erreur" aria-live="assertive" aria-atomic="true"></p>
         </div>
-      </fieldset>
-      <fieldset class="etape3">
-        <legend><h2>Mon compte</h2></legend>
+      </section>
+      <section aria-labelledby="step3title" id="step3" tabindex="-1" class="formMultiSteps__step">
+        <h2>Mon compte</h2>
         <div class="ctnForm">
           <p>
             <label for="pseudo">Mon prénom ou pseudo <span class="icone_bon"></span></label>
@@ -175,8 +175,8 @@
           </p>
           <p class="erreur" aria-live="assertive" aria-atomic="true"></p>
         </div>
-      </fieldset>
-      <button type="submit">M'inscrire</button>
+      </section>
+      <button type="submit" name="minscrire" class="formMultiSteps__btn">M'inscrire</button>
     </form>
 
   </main>
