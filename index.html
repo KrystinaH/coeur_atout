@@ -3,7 +3,7 @@
 <head>
 
   <meta charset="utf-8"/>
-  <title>Coeur Atout - Jouer la carte romantique</title>
+  <title>Inscription | Coeur Atout - Jouer la carte romantique</title>
   <meta name="viewport" content="width=device-width"/>
   <link href="https://fonts.googleapis.com/css?family=Nixie+One|Roboto:300,400,700" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="assets/css/styles.css"/>
@@ -15,14 +15,14 @@
     <div class="conteneur">
       <p class="visuallyhidden">Coeur Atout</p>
       <p class="visuallyhidden">Jouer la carte romantique</p>
-      <img class="logo" src="assets/images/logo.svg" alt="Coeur Atout, Jouer la carte romantique">
+        <a href="index.html"><img class="logo" src="assets/images/logo.svg" alt="Coeur Atout, Jouer la carte romantique"></a>
     </div>
   </header>
 
   <main class="conteneur">
     <h1>Inscription</h1>
 
-    <form action="index.html" class="formMultiSteps">
+    <form action="confirmation.html" class="formMultiSteps">
       <section aria-labelledby="step1title" id="step1" tabindex="-1" class="formMultiSteps__step">
         <h2>Qui?</h2>
         <fieldset class="ctnForm">
@@ -148,24 +148,22 @@
           <p class="erreur" aria-live="assertive" aria-atomic="true"></p>
         </div>
         <div class="ctnForm">
-          <p>
+          <p id="mdpContenu">
             <label for="mdp">Mon mot de passe <span class="icone_bon"></span></label>
             <input type="password" minlength="6" maxlength="10"
                    pattern="^(?=(.*[a-z]+))(?=(.*[A-Z]+))(?=(.*[0-9]+))[a-zA-Z0-9]{6,10}$" id="mdp" name="mdp"
                    required aria-required="true" aria-describedby="info_mdp">
+            <span class="mdpContenu__oeil">
+                <input class="visuallyhidden" type="checkbox" id="afficherMdp" name="afficher_mdp">
+                <label for="afficherMdp">
+                    <svg><use xlink:href="#icon-oeil"/></svg><span class="visuallyhidden">Afficher le mot de passe</span>
+                </label>
+            </span>
           </p>
           <p class="info" id="info_mdp">
             Entre 6 et 10 caractères, lettres minuscule et majuscule et chiffre obligatoire.
           </p>
           <p class="erreur" aria-live="assertive" aria-atomic="true"></p>
-        </div>
-        <div class="ctnForm">
-          <p>
-            <input class="visuallyhidden" type="checkbox" id="afficherMdp" name="afficher_mdp">
-            <label for="afficherMdp">
-              <svg><use xlink:href="#icon-oeil"/></svg><span class="visuallyhidden">Afficher le mot de passe</span>
-            </label>
-          </p>
         </div>
         <div class="ctnForm">
           <p>

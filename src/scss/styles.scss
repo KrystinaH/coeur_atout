@@ -68,8 +68,20 @@
 }
 
 /** Général **/
+@media (max-width: $ecranEtroit) {
+  .conteneur{
+    padding: 10px;
+  }
+}
+
 fieldset{
   border: none;
+  margin: 0;
+  padding-bottom: 0;
+
+  @media (max-width: $ecranEtroit) {
+    padding: 0;
+  }
 }
 
 ul{
@@ -91,12 +103,20 @@ select{
   background-color: $paleRose;
 }
 
-/** Styles de la page **/
-/* Gérénal */
+.formMultiSteps{
+  width: span(6 of 12);
+  margin: auto;
+  padding: 50px 0 100px 0;
+
+  @media (max-width: $ecranEtroit) {
+    width: 100%;
+    padding: 10px 0 50px 0;
+  }
+}
+
 svg{
-  width: 2em;
-  height: 2em;
-  vertical-align: bottom;
+  width: 1em;
+  height: 1em;
 }
 
 .elemErreur{
@@ -144,6 +164,12 @@ button{
   border-radius: 10px;
   border: none;
   cursor: pointer;
+  margin-top: 30px;
+
+  @media (max-width: $ecranEtroit) {
+    text-align: center;
+    width: 100%;
+  }
 
   &[disabled=true]{
     background-color: $tundoraGray;
@@ -181,6 +207,37 @@ header{
 }
 .formMultiSteps__btn[type=submit].OK {
   display: block;
+}
+
+.stepsBar{
+  list-style: none;
+  padding-left: 0;
+
+  li{
+    display: inline-block;
+    width: 30%;
+    border: 2px solid $razzMaTazzPink;
+    border-radius: 10px;
+    color: $razzMaTazzPink;
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
+
+    @media (max-width: $ecranEtroit) {
+      padding: 10px 0;
+      font-size: 15px;
+      width: 32%;
+    }
+
+    &[aria-current="step"]{
+      background-color: $paleRose;
+    }
+
+    &.stepCompleted{
+      background-color: $razzMaTazzPink;
+      color: white;
+    }
+  }
 }
 
 /* Étape 1: Qui? */
@@ -232,6 +289,18 @@ header{
 /* Étape 2: Mon profil */
 #step2{
   fieldset{
+    #jour{
+      width: 60px;
+    }
+
+    #mois{
+      width: 110px;
+    }
+
+    #annee{
+      width: 80px;
+    }
+
     .ctnForm{
       display: inline-block;
       position: relative;
@@ -239,12 +308,60 @@ header{
 
     .erreur{
       position: absolute;
-      background-color: $paleRose;
-      border: 1px solid red;
+      &__contenu{
+        background-color: #FFE6F1;
+        border: 1px solid red;
+        display: block;
+        width: 300px;
+        padding: 10px;
+      }
+
+      &.dateNonValide{
+        position: inherit;
+      }
     }
   }
 }
 
+/* Étape 3: Mon compte */
+#step3{
+  #mdpContenu{
+    position: relative;
+
+    .mdpContenu__oeil{
+      position: absolute;
+      top: 25px;
+      left: 160px;
+    }
+  }
+
+  #consentement{
+    display: inline-block;
+  }
+}
+
+/* Page de confirmation */
+.confirmation{
+  div{
+    text-align: center;
+    padding: 200px 0;
+  }
+
+  p{
+    font-size: 24px;
+   span{
+     display: block;
+     font-family: "Nixie One", cursive;
+     font-size: 36px;
+     font-weight: bold;
+   }
+  }
+
+  svg{
+    width: 100px;
+    height: 100px;
+  }
+}
 
 footer{
   padding: 10px;
