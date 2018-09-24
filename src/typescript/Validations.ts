@@ -405,9 +405,7 @@ export class Validations {
      */
     private afficherSucces(element:HTMLInputElement):void{
         this.effacerErreur(element);
-        /**
-        * Je n'ai aucun commentaire ou point à modififier dans cette méthode
-        */
+
         const spanBon: HTMLElement = element.closest('.ctnForm').querySelector('.icone_bon');
 
         if(spanBon.innerHTML == ''){
@@ -517,11 +515,6 @@ export class Validations {
         const arrEtapeCible:Array<boolean> = this.arrEtapes[intEtapeCible];
 
         if(intNumEtape != 3){
-            /**
-             * Révision de Jonathan 
-             * La méthode utiliser est totalement fonctionnel 
-             * L'utilisation de .every semble être un choix sensé dans cette situation
-             */
             if(arrEtapeCible.every(elem => elem == true)){
                 this.refbarreEtapes.activerBoutonSuivant();
             } else{
