@@ -1,3 +1,4 @@
+<?php $strNiveau = './'; ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -15,7 +16,7 @@
     <div class="conteneur">
       <p class="visuallyhidden">Coeur Atout</p>
       <p class="visuallyhidden">Jouer la carte romantique</p>
-        <a href="index.html"><img class="logo" src="assets/images/logo.svg" alt="Coeur Atout, Jouer la carte romantique"></a>
+        <a href="index.php"><img class="logo" src="assets/images/logo.svg" alt="Coeur Atout, Jouer la carte romantique"></a>
     </div>
   </header>
 
@@ -184,10 +185,7 @@
   </footer>
 
   <!-- Chargement de objMessages, l'objet json des messages d'erreurs -->
-  <script src="assets/js/objMessages.js"></script>
-
-  <!-- On importe toutes les classes de l'application et on instancie l'application dans app.js. -->
-  <script src="bower_components/requirejs/require.js" data-main="assets/js/app.js"></script>
+  <script src="<?php echo $strNiveau ;?>assets/js/objMessages.js"></script>
 
   <svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1"
        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -263,5 +261,17 @@
       </symbol>
     </defs>
   </svg>
+  <!-- CDN v2018 -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+          integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+          crossorigin="anonymous"></script>
+
+  <!-- ALT au CDN: chargement local de la version installée avec Bower -->
+  <script>window.jQuery || document.write('<script src="<?php echo $strNiveau ;?>bower_components/jquery/dist/jquery.min.js">\x3C/script>')</script>
+
+  <script>var strNiveau = "<?php echo $strNiveau ;?>";</script>
+
+  <!-- On importe toutes les classes de l'application et on instancie l'application dans app.js. -->
+  <script src="<?php echo $strNiveau ;?>bower_components/requirejs/require.js" data-main="<?php echo $strNiveau ;?>assets/js/app.js"></script>
 </body>
 </html>
